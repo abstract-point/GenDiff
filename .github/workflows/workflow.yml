@@ -1,0 +1,14 @@
+name: workflow
+on: [push]
+jobs:
+    linter-phpunit-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: install
+              run: make install
+            - name: linter
+              run: make lint
+            - name: phpunit-tests
+              run: make test
+
