@@ -1,4 +1,5 @@
 <?php
+
 namespace Php\Project\GenDiff;
 
 function run($args)
@@ -22,7 +23,7 @@ function genDiff($firstFile, $secondFile)
     ksort($mergedFile);
 
     $result = "{\n";
-        
+
     foreach ($mergedFile as $key => $value) {
         if (array_key_exists($key, $firstFileData) && array_key_exists($key, $secondFileData)) {
             if ($firstFileData[$key] === $secondFileData[$key]) {
