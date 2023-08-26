@@ -14,6 +14,7 @@ jobs:
             - name: Run test & publish code coverage
               uses: paambaati/codeclimate-action@v2.6.0
               env:
+                XDEBUG_MODE: coverage
                 CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
                 coverageCommand: make test-coverage-xml
