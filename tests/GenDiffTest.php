@@ -12,7 +12,10 @@ class GenDiffTest extends TestCase
     {
         return $this->path . $name;
     }
-
+    /**
+     * @covers Php\Project\GenDiff\genDiff
+     * @covers Php\Project\GenDiff\boolValueDisplay
+     */
     public function testGenDiffFlat()
     {
         $file1 = $this->getFilePath("file1.json");

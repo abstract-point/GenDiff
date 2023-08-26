@@ -11,4 +11,11 @@ jobs:
               run: make lint
             - name: phpunit-tests
               run: make test
-
+            - name: Run test & publish code coverage
+              uses: paambaati/codeclimate-action@v2.6.0
+              env:
+                CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                coverageCommand: make test-coverage-xml
+                coverageLocations: ${{github.workspace}}/build/logs/clover.xml:clover
+                debug: true
