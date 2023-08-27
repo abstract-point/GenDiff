@@ -8,7 +8,7 @@ function parseFile($filePath)
 {
     $fileContentString = file_get_contents($filePath);
     $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
-    
+
     if ($fileExtension === 'json') {
         return json_decode($fileContentString, true);
     } elseif ($fileExtension === 'yml' || $fileExtension === 'yaml') {

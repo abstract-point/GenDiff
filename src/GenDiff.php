@@ -6,8 +6,6 @@ use function Php\Project\Parsers\parseFile;
 
 function run($firstFile, $secondFile)
 {
-    //var_dump(__DIR__);exit;
-    
     $firstFileData = parseFile($firstFile);
     $secondFileData = parseFile($secondFile);
 
@@ -19,7 +17,7 @@ function genDiff($firstFileData, $secondFileData)
     //TODO: стоит попробовать использовать var_export($value, true)
     boolValueDisplay($firstFileData);
     boolValueDisplay($secondFileData);
-    
+
     $mergedFile = array_merge($firstFileData, $secondFileData);
     ksort($mergedFile);
 
