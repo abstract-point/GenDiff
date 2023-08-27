@@ -2,23 +2,24 @@
 
 namespace Php\Project\GenDiff;
 
-function run($args)
-{
-    $pathToFirstFile = $args['<firstFile>'];
-    $pathToSecondFile = $args['<secondFile>'];
+use function Php\Project\Parsers\parseFile;
 
-    echo genDiff($pathToFirstFile, $pathToSecondFile);
+function run($firstFile, $secondFile)
+{
+    //var_dump(__DIR__);exit;
+    
+    $firstFileData = parseFile($firstFile);
+    $secondFileData = parseFile($secondFile);
+
+    echo genDiff($firstFileData, $secondFileData);
 }
 
-function genDiff($firstFile, $secondFile)
+function genDiff($firstFileData, $secondFileData)
 {
-
-    $firstFileData = json_decode(file_get_contents($firstFile), true);
-    $secondFileData = json_decode(file_get_contents($secondFile), true);
     //TODO: стоит попробовать использовать var_export($value, true)
     boolValueDisplay($firstFileData);
     boolValueDisplay($secondFileData);
-
+    
     $mergedFile = array_merge($firstFileData, $secondFileData);
     ksort($mergedFile);
 
