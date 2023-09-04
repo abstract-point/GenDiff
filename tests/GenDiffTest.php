@@ -4,7 +4,6 @@ namespace Php\Project\Tests;
 
 use PHPUnit\Framework\TestCase;
 use function Php\Project\GenDiff\genDiff;
-use function Php\Project\Parsers\parseFile;
 
 class GenDiffTest extends TestCase
 {
@@ -14,40 +13,41 @@ class GenDiffTest extends TestCase
     {
         return $this->path . $name;
     }
+
     /**
-     * @covers Php\Project\Parsers\parseFile
      * @covers Php\Project\GenDiff\genDiff
-     * @covers Php\Project\GenDiff\boolValueDisplay
+     * @covers Php\Project\GenDiff\buildDiffTree
+     * @covers Php\Project\Parsers\parseFile
+     * @covers Php\Project\Formatters\Stylish\renderStylish
+     * @covers Php\Project\Formatters\Stylish\iter
+     * @covers Php\Project\Formatters\Stylish\stringify
      */
-    public function testGenDiffFlatJson()
+    public function testGenDiffNestedJsonStylish()
     {
-        $firstFilePath = $this->getFilePath("file1.json");
-        $secondFilePath = $this->getFilePath("file2.json");
+        $firstFilePath = $this->getFilePath("fileNested1.json");
+        $secondFilePath = $this->getFilePath("fileNested2.json");
 
-        $firstFileData = parseFile($firstFilePath);
-        $secondFileData = parseFile($secondFilePath);
-
-        $expected = file_get_contents($this->getFilePath("result.txt"));
-        $actual = genDiff($firstFileData, $secondFileData);
+        $expected = file_get_contents($this->getFilePath("resultNested.txt"));
+        $actual = genDiff($firstFilePath, $secondFilePath, 'stylish');
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * @covers Php\Project\Parsers\parseFile
      * @covers Php\Project\GenDiff\genDiff
-     * @covers Php\Project\GenDiff\boolValueDisplay
+     * @covers Php\Project\GenDiff\buildDiffTree
+     * @covers Php\Project\Parsers\parseFile
+     * @covers Php\Project\Formatters\Stylish\renderStylish
+     * @covers Php\Project\Formatters\Stylish\iter
+     * @covers Php\Project\Formatters\Stylish\stringify
      */
-    public function testGenDiffFlatYaml()
+    public function testGenDiffNestedYamlStylish()
     {
-        $firstFilePath = $this->getFilePath("file1.yml");
-        $secondFilePath = $this->getFilePath("file2.yml");
+        $firstFilePath = $this->getFilePath("fileNested1.yml");
+        $secondFilePath = $this->getFilePath("fileNested2.yml");
 
-        $firstFileData = parseFile($firstFilePath);
-        $secondFileData = parseFile($secondFilePath);
-
-        $expected = file_get_contents($this->getFilePath("result.txt"));
-        $actual = genDiff($firstFileData, $secondFileData);
+        $expected = file_get_contents($this->getFilePath("resultNested.txt"));
+        $actual = genDiff($firstFilePath, $secondFilePath, 'stylish');
 
         $this->assertEquals($expected, $actual);
     }

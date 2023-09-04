@@ -28,9 +28,10 @@ Options:
 
 DOC;
 
-//require('../vendor/docopt/docopt/src/docopt.php');
 $args = \Docopt::handle($doc, array('version'=>'Generate Diff 0.1'));
-$firstFile = $args["<firstFile>"];
-$secondFile = $args["<secondFile>"];
 
-run($firstFile, $secondFile);
+$firstFilePath = $args["<firstFile>"];
+$secondFilePath = $args["<secondFile>"];
+$format = $args["--format"];
+
+run($firstFilePath, $secondFilePath, $format = 'stylish');

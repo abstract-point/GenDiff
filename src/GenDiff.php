@@ -3,54 +3,62 @@
 namespace Php\Project\GenDiff;
 
 use function Php\Project\Parsers\parseFile;
+use function Php\Project\Formatters\Stylish\renderStylish;
 
-function run($firstFile, $secondFile)
+function run($firstFilePath, $secondFilePath, $format)
 {
-    $firstFileData = parseFile($firstFile);
-    $secondFileData = parseFile($secondFile);
-
-    echo genDiff($firstFileData, $secondFileData);
+    echo genDiff($firstFilePath, $secondFilePath, $format);
+    exit;
 }
 
-function genDiff($firstFileData, $secondFileData)
+function genDiff($firstFilePath, $secondFilePath, $format)
 {
-    //TODO: стоит попробовать использовать var_export($value, true)
-    boolValueDisplay($firstFileData);
-    boolValueDisplay($secondFileData);
+    $firstFileData = parseFile($firstFilePath);
+    $secondFileData = parseFile($secondFilePath);
 
-    $mergedFile = array_merge($firstFileData, $secondFileData);
-    ksort($mergedFile);
+    $diffTree = buildDiffTree($firstFileData, $secondFileData);
 
-    $result = "{\n";
-
-    foreach ($mergedFile as $key => $value) {
-        if (array_key_exists($key, $firstFileData) && array_key_exists($key, $secondFileData)) {
-            if ($firstFileData[$key] === $secondFileData[$key]) {
-                $result .= "    {$key}: {$value}\n";
-            } else {
-                $result .= "  - {$key}: {$firstFileData[$key]}\n";
-                $result .= "  + {$key}: {$secondFileData[$key]}\n";
-            }
-        }
-        if (array_key_exists($key, $firstFileData) && !array_key_exists($key, $secondFileData)) {
-            $result .= "  - {$key}: {$firstFileData[$key]}\n";
-        }
-        if (!array_key_exists($key, $firstFileData) && array_key_exists($key, $secondFileData)) {
-            $result .= "  + {$key}: {$secondFileData[$key]}\n";
-        }
+    switch ($format) {
+        case "stylish":
+            $result = renderStylish($diffTree);
+            break;
     }
-    $result .= "}";
 
     return $result;
 }
 
-function boolValueDisplay(&$arr)
+function buildDiffTree($firstFileData, $secondFileData)
 {
-    foreach ($arr as $key => $value) {
-        $displayValue = '';
-        if (is_bool($value)) {
-            $displayValue = $value ? 'true' : "false";
-            $arr[$key] = $displayValue;
-        }
-    }
+    $firstFileDataArray = (array) $firstFileData;
+    $secondFileDataArray = (array) $secondFileData;
+
+    $mergedKeys = array_keys(array_merge($firstFileDataArray, $secondFileDataArray));
+
+    sort($mergedKeys);
+
+    $tree = array_map(
+        function ($key) use ($firstFileDataArray, $secondFileDataArray) {
+            if (!array_key_exists($key, $firstFileDataArray)) {
+                return ["key" => $key, "value" => $secondFileDataArray[$key], "type" => "plus"];
+            }
+            if (!array_key_exists($key, $secondFileDataArray)) {
+                return ["key" => $key, "value" => $firstFileDataArray[$key], "type" => "minus"];
+            }
+
+            $firstNode = $firstFileDataArray[$key];
+            $secondNode = $secondFileDataArray[$key];
+
+            if ((is_object($firstNode) && is_object($secondNode)) || (is_array($firstNode) && is_array($secondNode))) {
+                $children = buildDiffTree($firstNode, $secondNode);
+                return ["key" => $key, "type" => "parent", "children" => $children];
+            }
+            if ($firstNode === $secondNode) {
+                return ["key" => $key, "value" => $firstNode, "type" => "same"];
+            } else {
+                return ["key" => $key, "firstValue" => $firstNode, "secondValue" => $secondNode, "type" => "changed"];
+            }
+        },
+        $mergedKeys
+    );
+    return $tree;
 }
