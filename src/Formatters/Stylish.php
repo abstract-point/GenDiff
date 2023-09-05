@@ -2,12 +2,7 @@
 
 namespace Php\Project\Formatters\Stylish;
 
-function renderStylish($tree)
-{
-    return iter($tree, 1);
-}
-
-function iter($tree, $depth)
+function renderStylish($tree, $depth = 1)
 {
     $margin = str_repeat(" ", ($depth * 4));
     $marginChange = str_repeat(" ", ($depth * 4 - 2));
@@ -16,7 +11,7 @@ function iter($tree, $depth)
     $result = array_map(
         function ($node) use ($depth, $margin, $marginChange) {
             if ($node['type'] === 'parent') {
-                $children = iter($node['children'], $depth + 1);
+                $children = renderStylish($node['children'], $depth + 1);
                 return "{$margin}{$node['key']}: {$children}";
             }
             if ($node['type'] === 'plus') {
