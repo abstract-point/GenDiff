@@ -10,6 +10,10 @@
 
 [![asciicast](https://asciinema.org/a/ThBvPoVis9VKHIWAs74G98jmz.svg)](https://asciinema.org/a/ThBvPoVis9VKHIWAs74G98jmz)
 
-#### GenDiff Nested Data Asciinema rec
+#### GenDiff Stylish Nested Data Asciinema rec
 
 [![asciicast](https://asciinema.org/a/6H565cTXzDsp1lVgAkibTssgE.svg)](https://asciinema.org/a/6H565cTXzDsp1lVgAkibTssgE)
+
+#### GenDiff Plain Nested Data Asciinema rec
+
+[![asciicast](https://asciinema.org/a/kziWrAlA8RDgu2b8QuOlTO0WP.svg)](https://asciinema.org/a/kziWrAlA8RDgu2b8QuOlTO0WP)

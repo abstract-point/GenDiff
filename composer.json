@@ -12,8 +12,10 @@
         },
         "files": [
             "src/GenDiff.php",
+            "src/Formatters.php",
             "src/Parsers.php",
-            "src/Formatters/Stylish.php"
+            "src/Formatters/Stylish.php",
+            "src/Formatters/Plain.php"
         ]
     },
     "authors": [

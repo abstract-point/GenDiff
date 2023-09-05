@@ -3,13 +3,7 @@
 namespace Php\Project\GenDiff;
 
 use function Php\Project\Parsers\parseFile;
-use function Php\Project\Formatters\Stylish\renderStylish;
-
-function run($firstFilePath, $secondFilePath, $format)
-{
-    echo genDiff($firstFilePath, $secondFilePath, $format);
-    exit;
-}
+use function Php\Project\Formatters\render;
 
 function genDiff($firstFilePath, $secondFilePath, $format)
 {
@@ -18,23 +12,14 @@ function genDiff($firstFilePath, $secondFilePath, $format)
 
     $diffTree = buildDiffTree($firstFileData, $secondFileData);
 
-    switch ($format) {
-        case "stylish":
-            $result = renderStylish($diffTree);
-            break;
-    }
-
-    return $result;
+    return render($diffTree, $format);
 }
 
 function buildDiffTree($firstFileData, $secondFileData)
 {
     $firstFileDataArray = (array) $firstFileData;
     $secondFileDataArray = (array) $secondFileData;
-
-    $mergedKeys = array_keys(array_merge($firstFileDataArray, $secondFileDataArray));
-
-    sort($mergedKeys);
+    $mergedKeys = prepareKeys($firstFileDataArray, $secondFileDataArray);
 
     $tree = array_map(
         function ($key) use ($firstFileDataArray, $secondFileDataArray) {
@@ -61,4 +46,13 @@ function buildDiffTree($firstFileData, $secondFileData)
         $mergedKeys
     );
     return $tree;
+}
+
+function prepareKeys($array1, $array2)
+{
+    $mergedArray = array_merge($array1, $array2);
+    $mergedKeys = array_keys($mergedArray);
+    sort($mergedKeys);
+
+    return $mergedKeys;
 }
