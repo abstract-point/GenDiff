@@ -41,6 +41,8 @@ function stringify($value)
         return "true";
     } elseif ($value === null) {
         return "null";
+    } elseif ($value === 0) {
+        return "0";
     } else {
         return "'{$value}'";
     }
