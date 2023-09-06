@@ -24,17 +24,21 @@ class GenDiffTest extends TestCase
      * @covers Php\Project\Formatters\Stylish\stringify
      * @covers Php\Project\Formatters\Plain\renderPlain
      * @covers Php\Project\Formatters\Plain\stringify
+     * @covers Php\Project\Formatters\Json\renderJson
      */
-    public function testGenDiffNestedJsonStylish()
+    public function testGenDiffJson()
     {
-        $firstFilePath = $this->getFilePath("fileNested1.json");
-        $secondFilePath = $this->getFilePath("fileNested2.json");
+        $firstFilePath = $this->getFilePath("file1.json");
+        $secondFilePath = $this->getFilePath("file2.json");
 
-        $expected = file_get_contents($this->getFilePath("resultNestedStylish.txt"));
+        $expected = file_get_contents($this->getFilePath("resultStylish.txt"));
         $actual = genDiff($firstFilePath, $secondFilePath, 'stylish');
 
-        $expectedPlain = file_get_contents($this->getFilePath("resultNestedPlain.txt"));
+        $expectedPlain = file_get_contents($this->getFilePath("resultPlain.txt"));
         $actualPlain = genDiff($firstFilePath, $secondFilePath, 'plain');
+
+        $expectedPlain = file_get_contents($this->getFilePath("resultJson.txt"));
+        $actualPlain = genDiff($firstFilePath, $secondFilePath, 'json');
 
         $this->assertEquals($expected, $actual);
         $this->assertEquals($expectedPlain, $actualPlain);
@@ -50,17 +54,21 @@ class GenDiffTest extends TestCase
      * @covers Php\Project\Formatters\Stylish\stringify
      * @covers Php\Project\Formatters\Plain\renderPlain
      * @covers Php\Project\Formatters\Plain\stringify
+     * @covers Php\Project\Formatters\Json\renderJson
      */
-    public function testGenDiffNestedYamlStylish()
+    public function testGenDiffYaml()
     {
-        $firstFilePath = $this->getFilePath("fileNested1.yml");
-        $secondFilePath = $this->getFilePath("fileNested2.yml");
+        $firstFilePath = $this->getFilePath("file1.yml");
+        $secondFilePath = $this->getFilePath("file2.yml");
 
-        $expectedStylish = file_get_contents($this->getFilePath("resultNestedStylish.txt"));
+        $expectedStylish = file_get_contents($this->getFilePath("resultStylish.txt"));
         $actualStylish = genDiff($firstFilePath, $secondFilePath, 'stylish');
 
-        $expectedPlain = file_get_contents($this->getFilePath("resultNestedPlain.txt"));
+        $expectedPlain = file_get_contents($this->getFilePath("resultPlain.txt"));
         $actualPlain = genDiff($firstFilePath, $secondFilePath, 'plain');
+
+        $expectedPlain = file_get_contents($this->getFilePath("resultJson.txt"));
+        $actualPlain = genDiff($firstFilePath, $secondFilePath, 'json');
 
         $this->assertEquals($expectedStylish, $actualStylish);
         $this->assertEquals($expectedPlain, $actualPlain);
