@@ -4,7 +4,7 @@ namespace Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parseFile($filePath)
+function parseFile(string $filePath)
 {
     $fileContentString = file_get_contents($filePath);
     $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);

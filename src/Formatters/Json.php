@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Json;
 
-function renderJson($diffTree)
+function renderJson(array $diffTree)
 {
     return json_encode($diffTree);
 }

@@ -2,7 +2,7 @@
 
 namespace Differ\Formatters\Stylish;
 
-function renderStylish($tree, $depth = 1)
+function renderStylish(array $tree, int $depth = 1)
 {
     $margin = str_repeat(" ", ($depth * 4));
     $marginChange = str_repeat(" ", ($depth * 4 - 2));
@@ -40,11 +40,11 @@ function renderStylish($tree, $depth = 1)
     return "{\n" . implode("\n", $result) . "\n{$marginCloseBracket}}";
 }
 
-function stringify($node, $depth)
+function stringify(mixed $node, int $depth)
 {
     $nodeString = json_encode($node, JSON_PRETTY_PRINT);
     $symbols = ['"', ','];
-    $preparedNodeString = str_replace($symbols, "", $nodeString);
+    $preparedNodeString = str_replace($symbols, "", (string) $nodeString);
 
     if (is_object($node) || is_array($node)) {
         $arr = explode("\n", $preparedNodeString);

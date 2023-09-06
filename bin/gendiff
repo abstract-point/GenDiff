@@ -35,7 +35,12 @@ $firstFilePath = $args["<firstFile>"];
 $secondFilePath = $args["<secondFile>"];
 $format = $args["--format"];
 
-$diff = genDiff($firstFilePath, $secondFilePath, $format);
-
-print_r($diff);
-exit;
+if (file_exists($firstFilePath) && file_exists($secondFilePath)) {
+  $diff = genDiff($firstFilePath, $secondFilePath, $format);
+  
+  print_r($diff);
+  exit;
+} else {
+  print_r("Один или оба файла не найдены!");
+  exit;
+}

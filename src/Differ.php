@@ -6,18 +6,17 @@ use function Differ\Parsers\parseFile;
 use function Differ\Formatters\render;
 use function Functional\sort as immutableSort;
 
-function genDiff($firstFilePath, $secondFilePath, $format = "stylish")
+function genDiff(string $firstFilePath, string $secondFilePath, string $format = "stylish")
 {
     $firstFileData = parseFile($firstFilePath);
     $secondFileData = parseFile($secondFilePath);
 
     $diffTree = buildDiffTree($firstFileData, $secondFileData);
-    //print_r($diffTree);exit;
 
     return render($diffTree, $format);
 }
 
-function buildDiffTree($firstFileData, $secondFileData)
+function buildDiffTree(mixed $firstFileData, mixed $secondFileData)
 {
     $firstFileDataArray = (array) $firstFileData;
     $secondFileDataArray = (array) $secondFileData;
@@ -50,7 +49,7 @@ function buildDiffTree($firstFileData, $secondFileData)
     return $tree;
 }
 
-function prepareKeys($array1, $array2)
+function prepareKeys(array $array1, array $array2)
 {
     $mergedArray = array_merge($array1, $array2);
     $mergedKeys = array_keys($mergedArray);
