@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
-namespace Php\Project\Bin;
+namespace Differ\Bin;
 
-use function Php\Project\GenDiff\genDiff;
+use function Differ\Differ\genDiff;
 
 $autoloadPathGlobal = __DIR__ . '/../../../autoload.php';
 $autoloadPathLocal = __DIR__ . '/../vendor/autoload.php';

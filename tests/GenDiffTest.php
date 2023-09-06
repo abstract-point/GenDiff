@@ -1,9 +1,9 @@
 <?php
 
-namespace Php\Project\Tests;
+namespace Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
-use function Php\Project\GenDiff\genDiff;
+use function Differ\Differ\genDiff;
 
 class GenDiffTest extends TestCase
 {
@@ -15,16 +15,16 @@ class GenDiffTest extends TestCase
     }
 
     /**
-     * @covers Php\Project\GenDiff\genDiff
-     * @covers Php\Project\Formatters\render
-     * @covers Php\Project\GenDiff\buildDiffTree
-     * @covers Php\Project\GenDiff\prepareKeys
-     * @covers Php\Project\Parsers\parseFile
-     * @covers Php\Project\Formatters\Stylish\renderStylish
-     * @covers Php\Project\Formatters\Stylish\stringify
-     * @covers Php\Project\Formatters\Plain\renderPlain
-     * @covers Php\Project\Formatters\Plain\stringify
-     * @covers Php\Project\Formatters\Json\renderJson
+     * @covers Differ\Differ\genDiff
+     * @covers Differ\Formatters\render
+     * @covers Differ\Differ\buildDiffTree
+     * @covers Differ\Differ\prepareKeys
+     * @covers Differ\Parsers\parseFile
+     * @covers Differ\Formatters\Stylish\renderStylish
+     * @covers Differ\Formatters\Stylish\stringify
+     * @covers Differ\Formatters\Plain\renderPlain
+     * @covers Differ\Formatters\Plain\stringify
+     * @covers Differ\Formatters\Json\renderJson
      */
     public function testGenDiffJson()
     {
@@ -46,16 +46,16 @@ class GenDiffTest extends TestCase
     }
 
     /**
-     * @covers Php\Project\GenDiff\genDiff
-     * @covers Php\Project\Formatters\render
-     * @covers Php\Project\GenDiff\buildDiffTree
-     * @covers Php\Project\GenDiff\prepareKeys
-     * @covers Php\Project\Parsers\parseFile
-     * @covers Php\Project\Formatters\Stylish\renderStylish
-     * @covers Php\Project\Formatters\Stylish\stringify
-     * @covers Php\Project\Formatters\Plain\renderPlain
-     * @covers Php\Project\Formatters\Plain\stringify
-     * @covers Php\Project\Formatters\Json\renderJson
+     * @covers Differ\Differ\genDiff
+     * @covers Differ\Formatters\render
+     * @covers Differ\Differ\buildDiffTree
+     * @covers Differ\Differ\prepareKeys
+     * @covers Differ\Parsers\parseFile
+     * @covers Differ\Formatters\Stylish\renderStylish
+     * @covers Differ\Formatters\Stylish\stringify
+     * @covers Differ\Formatters\Plain\renderPlain
+     * @covers Differ\Formatters\Plain\stringify
+     * @covers Differ\Formatters\Json\renderJson
      */
     public function testGenDiffYaml()
     {

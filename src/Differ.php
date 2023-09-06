@@ -1,9 +1,9 @@
 <?php
 
-namespace Php\Project\GenDiff;
+namespace Differ\Differ;
 
-use function Php\Project\Parsers\parseFile;
-use function Php\Project\Formatters\render;
+use function Differ\Parsers\parseFile;
+use function Differ\Formatters\render;
 use function Functional\sort as immutableSort;
 
 function genDiff($firstFilePath, $secondFilePath, $format)

@@ -1,10 +1,10 @@
 <?php
 
-namespace Php\Project\Formatters;
+namespace Differ\Formatters;
 
-use function Php\Project\Formatters\Stylish\renderStylish;
-use function Php\Project\Formatters\Plain\renderPlain;
-use function Php\Project\Formatters\Json\renderJson;
+use function Differ\Formatters\Stylish\renderStylish;
+use function Differ\Formatters\Plain\renderPlain;
+use function Differ\Formatters\Json\renderJson;
 
 function render($diffTree, $format)
 {

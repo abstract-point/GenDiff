@@ -11,7 +11,7 @@
             "Hexlet\\Code\\": "src/"
         },
         "files": [
-            "src/GenDiff.php",
+            "src/Differ.php",
             "src/Formatters.php",
             "src/Parsers.php",
             "src/Formatters/Stylish.php",

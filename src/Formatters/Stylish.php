@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Project\Formatters\Stylish;
+namespace Differ\Formatters\Stylish;
 
 function renderStylish($tree, $depth = 1)
 {
