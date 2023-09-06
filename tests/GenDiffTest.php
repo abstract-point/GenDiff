@@ -37,11 +37,12 @@ class GenDiffTest extends TestCase
         $expectedPlain = file_get_contents($this->getFilePath("resultPlain.txt"));
         $actualPlain = genDiff($firstFilePath, $secondFilePath, 'plain');
 
-        $expectedPlain = file_get_contents($this->getFilePath("resultJson.txt"));
-        $actualPlain = genDiff($firstFilePath, $secondFilePath, 'json');
+        $expectedJson = file_get_contents($this->getFilePath("resultJson.txt"));
+        $actualJson = genDiff($firstFilePath, $secondFilePath, 'json');
 
         $this->assertEquals($expected, $actual);
         $this->assertEquals($expectedPlain, $actualPlain);
+        $this->assertEquals($expectedJson, $actualJson);
     }
 
     /**
@@ -67,10 +68,11 @@ class GenDiffTest extends TestCase
         $expectedPlain = file_get_contents($this->getFilePath("resultPlain.txt"));
         $actualPlain = genDiff($firstFilePath, $secondFilePath, 'plain');
 
-        $expectedPlain = file_get_contents($this->getFilePath("resultJson.txt"));
-        $actualPlain = genDiff($firstFilePath, $secondFilePath, 'json');
+        $expectedJson = file_get_contents($this->getFilePath("resultJson.txt"));
+        $actualJson = genDiff($firstFilePath, $secondFilePath, 'json');
 
         $this->assertEquals($expectedStylish, $actualStylish);
         $this->assertEquals($expectedPlain, $actualPlain);
+        $this->assertEquals($expectedJson, $actualJson);
     }
 }
