@@ -6,7 +6,7 @@ use function Differ\Parsers\parseFile;
 use function Differ\Formatters\render;
 use function Functional\sort as immutableSort;
 
-function genDiff($firstFilePath, $secondFilePath, $format)
+function genDiff($firstFilePath, $secondFilePath, $format = "stylish")
 {
     $firstFileData = parseFile($firstFilePath);
     $secondFileData = parseFile($secondFilePath);
