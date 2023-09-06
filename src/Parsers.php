@@ -10,8 +10,8 @@ function parseFile(string $filePath)
     $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
 
     if ($fileExtension === 'json') {
-        return json_decode($fileContentString, true);
+        return json_decode((string) $fileContentString, true);
     } elseif ($fileExtension === 'yml' || $fileExtension === 'yaml') {
-        return Yaml::parse($fileContentString, Yaml::PARSE_OBJECT_FOR_MAP);
+        return Yaml::parse((string) $fileContentString, Yaml::PARSE_OBJECT_FOR_MAP);
     }
 }
