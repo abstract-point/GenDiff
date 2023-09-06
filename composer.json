@@ -15,7 +15,8 @@
             "src/Formatters.php",
             "src/Parsers.php",
             "src/Formatters/Stylish.php",
-            "src/Formatters/Plain.php"
+            "src/Formatters/Plain.php",
+            "src/Formatters/Json.php"
         ]
     },
     "authors": [
@@ -26,7 +27,8 @@
     ],
     "require": {
         "docopt/docopt": "^1.0",
-        "symfony/yaml": "^6.3"
+        "symfony/yaml": "^6.3",
+        "lstrojny/functional-php": "^1.17"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",

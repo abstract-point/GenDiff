@@ -10,10 +10,10 @@ function renderPlain($tree, $path = '')
                 case "parent":
                     $path .= "{$node['key']}.";
                     return renderPlain($node['children'], $path);
-                case "minus":
+                case "removed":
                     $path .= $node['key'];
                     return "Property '{$path}' was removed";
-                case "plus":
+                case "added":
                     $path .= $node['key'];
                     $value = stringify($node['value']);
                     return "Property '{$path}' was added with value: {$value}";

@@ -14,11 +14,11 @@ function renderStylish($tree, $depth = 1)
                 $children = renderStylish($node['children'], $depth + 1);
                 return "{$margin}{$node['key']}: {$children}";
             }
-            if ($node['type'] === 'plus') {
+            if ($node['type'] === 'added') {
                 $value = stringify($node['value'], $depth);
                 return "{$marginChange}+ {$node['key']}: {$value}";
             }
-            if ($node['type'] === 'minus') {
+            if ($node['type'] === 'removed') {
                 $value = stringify($node['value'], $depth);
                 return "{$marginChange}- {$node['key']}: {$value}";
             }

@@ -37,3 +37,4 @@ $format = $args["--format"];
 $diff = genDiff($firstFilePath, $secondFilePath, $format);
 
 print_r($diff);
+exit;

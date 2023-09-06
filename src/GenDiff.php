@@ -4,6 +4,7 @@ namespace Php\Project\GenDiff;
 
 use function Php\Project\Parsers\parseFile;
 use function Php\Project\Formatters\render;
+use function Functional\sort as immutableSort;
 
 function genDiff($firstFilePath, $secondFilePath, $format)
 {
@@ -11,6 +12,7 @@ function genDiff($firstFilePath, $secondFilePath, $format)
     $secondFileData = parseFile($secondFilePath);
 
     $diffTree = buildDiffTree($firstFileData, $secondFileData);
+    //print_r($diffTree);exit;
 
     return render($diffTree, $format);
 }
@@ -24,10 +26,10 @@ function buildDiffTree($firstFileData, $secondFileData)
     $tree = array_map(
         function ($key) use ($firstFileDataArray, $secondFileDataArray) {
             if (!array_key_exists($key, $firstFileDataArray)) {
-                return ["key" => $key, "value" => $secondFileDataArray[$key], "type" => "plus"];
+                return ["key" => $key, "value" => $secondFileDataArray[$key], "type" => "added"];
             }
             if (!array_key_exists($key, $secondFileDataArray)) {
-                return ["key" => $key, "value" => $firstFileDataArray[$key], "type" => "minus"];
+                return ["key" => $key, "value" => $firstFileDataArray[$key], "type" => "removed"];
             }
 
             $firstNode = $firstFileDataArray[$key];
@@ -52,7 +54,6 @@ function prepareKeys($array1, $array2)
 {
     $mergedArray = array_merge($array1, $array2);
     $mergedKeys = array_keys($mergedArray);
-    sort($mergedKeys);
 
-    return $mergedKeys;
+    return immutableSort($mergedKeys, fn ($left, $right) => strcmp($left, $right));
 }
