@@ -1,5 +1,5 @@
 {
-    "name": "hexlet/code",
+    "name": "abstract-point/gendiff",
     "license": "MIT",
     "bin": ["bin/gendiff"],
     "scripts": {
@@ -7,9 +7,6 @@
         "test": "phpunit tests"
     },
     "autoload": {
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        },
         "files": [
             "src/Differ.php",
             "src/Formatters.php",
