@@ -20,9 +20,10 @@ make install
 ### Using
 
 ```sh
-./bin/gendiff [--format <fmt>] <firstFile> <secondFile>
+./bin/gendiff [--format <fmt>] path/to/first_file path/to/second_file
 ```
 Available formats: `plain` `stylish` `json`
+Default format `stylish`
 
 #### How GenDiff work with .json files
 [![asciicast](https://asciinema.org/a/b2f2qWR3jVG4umuvUqmBloq52.svg)](https://asciinema.org/a/b2f2qWR3jVG4umuvUqmBloq52)
