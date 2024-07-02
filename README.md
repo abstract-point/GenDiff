@@ -1,7 +1,28 @@
+# GenDiff
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Ivan-Lysenko/php-project-48/workflows/hexlet-check/badge.svg)](https://github.com/Ivan-Lysenko/php-project-48/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a846fa012b388f03784d/maintainability)](https://codeclimate.com/github/Ivan-Lysenko/php-project-48/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a846fa012b388f03784d/test_coverage)](https://codeclimate.com/github/Ivan-Lysenko/php-project-48/test_coverage)
+
+### Description
+A PHP console application to compare JSON and YAML files, displaying differences in data.
+
+### System requires
+   [PHP](https://www.php.net/) 7+
+
+### Installation
+```sh
+git clone https://github.com/abstract-point/GenDiff.git
+cd GenDiff
+make install
+```   
+### Using
+
+```sh
+./bin/gendiff [--format <fmt>] <firstFile> <secondFile>
+```
+Available formats: `plain` `stylish` `json`
 
 #### How GenDiff work with .json files
 [![asciicast](https://asciinema.org/a/b2f2qWR3jVG4umuvUqmBloq52.svg)](https://asciinema.org/a/b2f2qWR3jVG4umuvUqmBloq52)
@@ -18,6 +39,6 @@
 
 [![asciicast](https://asciinema.org/a/kziWrAlA8RDgu2b8QuOlTO0WP.svg)](https://asciinema.org/a/kziWrAlA8RDgu2b8QuOlTO0WP)
 
-#### How GenDiff display result in JSON style
+#### How DiffChecker display result in JSON style
 
 [![asciicast](https://asciinema.org/a/xQH6HVpi1qUkwBAwZbpIQIbLE.svg)](https://asciinema.org/a/xQH6HVpi1qUkwBAwZbpIQIbLE)
